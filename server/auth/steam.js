@@ -34,7 +34,11 @@ router.get('/steam/return',
 );
 
 router.get('/user', (req, res) => {
-    res.json({ user: req.user });
+    if (req.isAuthenticated()) {
+        res.json({ user: req.user });
+    } else {
+        res.json({ user: null });
+    }
 });
 
 module.exports = router;
